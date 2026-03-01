@@ -18,7 +18,7 @@ exports.getAllTransactions = async (req, res) => {
 
 // Create a new transaction
 exports.createTransaction = async (req, res) => {
-    const { amount, type, category, description, date, tags } = req.body;
+    const { amount, type, category, description, date } = req.body;
     try {
         const { data, error } = await supabase
             .from('transactions')
@@ -29,8 +29,7 @@ exports.createTransaction = async (req, res) => {
                     type,
                     category,
                     description,
-                    date: date || new Date().toISOString(),
-                    tags
+                    date: date || new Date().toISOString()
                 }
             ])
             .select();
